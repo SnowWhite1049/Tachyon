@@ -12,7 +12,7 @@ export const Paths = {
 	caseStudyHistory: "/case/studies/history",
 	caseStudyCorrection: "/case/studies/correction",
 	showCompany: "/companies/:id",
-	showMenter: "/menters/:id",
+	showMentor: "/mentors/:id",
 	entrySheetCorrection: "/entry/sheets/correction",
 	ticketPurchase: "/tickets/purchase",
 	showArticle: "/articles/:id",

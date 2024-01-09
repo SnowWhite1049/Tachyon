@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_07_093450) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_09_164749) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "user_name", null: false
     t.string "first_name", limit: 50
     t.string "last_name", limit: 50
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.timestamp "deleted_at"
+  end
+
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "image_path", null: false
+    t.string "introduction_text", null: false
+    t.text "content"
+    t.text "content2"
+    t.string "subtitle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.timestamp "deleted_at"
@@ -117,11 +129,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_07_093450) do
     t.bigint "company_id", null: false
     t.string "name", limit: 50, null: false
     t.string "image_path"
+    t.string "materials_path"
     t.text "overview", null: false
-    t.datetime "event_date", null: false
-    t.string "event_url", null: false
-    t.string "event_materials_url", null: false
+    t.float "rating"
+    t.date "event_date", null: false
+    t.time "start_time"
+    t.time "end_time"
     t.integer "event_type", limit: 1, null: false
+    t.string "open_chat_url"
+    t.string "zoom_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.timestamp "deleted_at"
@@ -180,12 +196,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_07_093450) do
     t.string "user_name", null: false
     t.string "first_name", limit: 50
     t.string "last_name", limit: 50
+    t.date "birth_date"
+    t.integer "gender", limit: 1
     t.integer "interview_salary", null: false
     t.integer "lecture_create_salary"
     t.integer "lecture_salary"
+    t.string "university"
+    t.string "faculty"
+    t.integer "graduation_year"
+    t.string "job_offer_1"
+    t.string "job_offer_2"
     t.string "line_url", null: false
-    t.string "timerex_url"
-    t.string "timerex_url_short"
+    t.string "timerex_l_url"
+    t.string "timerex_s_url"
+    t.text "self_introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.timestamp "deleted_at"

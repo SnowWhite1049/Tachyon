@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './assets/scss/main.scss';
-import { Routing } from './routes/Route';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,7 +21,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
-      <Routing />
+      <App />
     </React.StrictMode>
   </ThemeProvider>
 );

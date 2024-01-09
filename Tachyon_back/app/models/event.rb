@@ -6,7 +6,11 @@ class Event < ApplicationRecord
   validates :name, length: { maximum: 50 }, presence:true
   validates :overview, presence:true
   validates :event_date, presence:true
-  validates :event_url, length: { maximum: 255 }, presence:true
-  validates :event_materials_url, length: { maximum: 255 }, presence:true
+  validates :start_time, presence:true
+  validates :end_time, presence:true
+  validates :image_path, presence:true
+  validates :materials_path, presence:true
   validates :event_type, presence:true
+  validates :open_chat_url, presence:true
+  validates :zoom_url, presence:true
 end

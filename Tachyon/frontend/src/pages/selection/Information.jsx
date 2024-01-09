@@ -3,23 +3,38 @@ import '../../assets/scss/auth/login.scss';
 import Heading from "../../components/partials/Heading";
 import companyData from "../../data/company/companies.json";
 import Events from "../../features/dashboard/Events";
+import {fetchAllIndustries} from '../../utils/actions';
 
 export default () => {
-  const [events, setEvents] = useState(companyData);
+  const [industries, setIndustries] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetchAllIndustries()
+      .then(res => {
+        if(res.status == 200){
+          setIndustries(res.data);
+        }
+        else {
+          setError(res.data.error)
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+  }, []);
   return (
     <section className="">			
-			<div className="my-4">
+			<div className="mt-4">
         <Heading title="戦略コンサル" />
-        <Events events={events} />
       </div>
-      <div className="my-4">
-        <Heading title="総合コンサル" />
-        <Events events={events} />
-      </div>
-      <div className="my-4">
-        <Heading title="シンクタンク" />
-        <Events events={events} />
-      </div>
+      {industries.length>0&&industries.map(industry=>(
+        <div className="my-4 bg-slate-50 pb-5" key={industry.id}>
+          <h4 className="ml-5">{industry.name}</h4>
+          <Events companies={industry.companies} category='industry' perPage={2.5}/>
+        </div>
+      ))}
     </section>
   )
 }

@@ -3,9 +3,15 @@ class IndustryController < ApplicationController
 
   # GET /industries
   def index
-    @industries = Industry.all
+    begin
 
-    render json: @industries
+      @industries = Industry.select(:id, :name).includes(:companies)
+  
+      render json: @industries.to_json(include: [:companies=>{only: [:id,:name, :industry_id, :logo_path]}]), status:200
+
+    rescue => error
+      render json: {error: 'サーバーエラー。'}, status: 500
+    end
   end
 
   # GET /industries/1

@@ -5,7 +5,7 @@ import EditEvent from "../../features/event/EditEvent";
 export default () => {
   return (
     <section className="mx-4">
-      <div className="">
+      <div className="py-5">
         <Heading title="イベント作成" />
       </div>
 			<div className="my-5">

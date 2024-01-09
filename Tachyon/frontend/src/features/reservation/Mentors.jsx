@@ -15,6 +15,7 @@ export default (props) => {
 				gap: '1rem',
 				drag: true
       }}
+			className="bg-slate-50 py-4 px-2 mt-2"
     >
 			{
 				mentors.map((mentor, index) =>

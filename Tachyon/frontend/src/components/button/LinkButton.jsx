@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid';
 
@@ -7,7 +7,7 @@ export default (props) => {
 
   return (
     <Link to={link}>
-      <div className="flex justify-end pe-5 text-sm text-primary float-right">
+      <div className="flex justify-end pe-4 text-sm text-primary float-right text-xs">
         {title}
         <ChevronDoubleRightIcon className="w-4 h-5 ps-1" />
       </div>

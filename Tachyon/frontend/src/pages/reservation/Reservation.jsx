@@ -8,10 +8,48 @@ import companyData from "../../data/company/companies.json";
 import ES from "../../assets/images/es_ico.png"
 import Case from "../../assets/images/case_ico.png"
 import Calender from "../../assets/images/calander_ico.png"
+import {fetchAllMentors} from '../../utils/actions';
 
 export default () => {
-  const [mentors, setMentors] = useState(mentorData);
+  const [mentors, setMentors] = useState([]);
   const [events, setEvents] = useState(companyData);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetchAllMentors()
+      .then(res => {
+        if(res.status == 200){
+          setMentors(res.data);
+        }
+        else {
+          setError(res.data.error)
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    // fetchEventReservations()
+    //   .then(res => {
+    //     if(res.status == 200){
+    //       setEventReservations(res.data);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+    // fetchTodayArticle()
+    //   .then(res => {
+    //     if(res.status == 200){
+    //       setArticle(res.data);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+  }, []);
   return (
     <section className="">
       <div className="py-5">

@@ -1,13 +1,15 @@
 import axios from "axios";
 
+import Auth from "./auth";
+
 const URL = "http://localhost:3001/api/v1";
 
 const API = (config) => {
-	
-	if (localStorage.getItem('jwtToken')) {
-		const jwtToken = localStorage.getItem('jwtToken');
+
+	if (localStorage.getItem('auth')) {
+		const token = Auth.getToken();
 		config.headers = {
-			authorization: jwtToken,
+			Authorization: `Bearer ${token}`,
 		};
 	}
 

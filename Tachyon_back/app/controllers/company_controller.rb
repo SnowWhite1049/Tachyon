@@ -22,10 +22,10 @@ class CompanyController < ApplicationController
       if @company
         render json: @company.to_json(except: [ :created_at, :updated_at, :deleted_at]), status:200
       else
-        render json: {error: 'リソースが存在しません', status: 404}
+        render json: {error: 'リソースが存在しません'}, status: 404
       end
     rescue => error
-      render json: {error: 'リソースが存在しません', status: 404}
+      render json: {error: 'リソースが存在しません'}, status: 404
     end
   end
 

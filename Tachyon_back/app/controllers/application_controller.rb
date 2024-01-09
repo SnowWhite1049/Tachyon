@@ -4,17 +4,17 @@ class ApplicationController < ActionController::API
   protected
   def authenticate_request!
     unless user_id_in_token?
-      render json: { error: '認証エラー', status:401}
+      render json: { error: '認証エラー'}, status: 401
       return
     end
     @current_user = User.find(auth_token[:id])
   rescue JWT::VerificationError, JWT::DecodeError
-    render json: { error: '認証エラー', status:401 }
+    render json: { error: '認証エラー'}, status: 401 
   end
 
   def admin_request!
     unless user_id_in_token?
-      render json: { error: '認証エラー', status:401 }
+      render json: { error: '認証エラー'}, status: 401 
       return
     else
       unless is_admin
@@ -35,6 +35,7 @@ class ApplicationController < ActionController::API
 
   def auth_token
     @auth_token ||= JsonWebToken.decode(http_token)
+    
   end
 
   def user_id_in_token?

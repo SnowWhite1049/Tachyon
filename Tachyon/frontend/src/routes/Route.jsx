@@ -12,10 +12,11 @@ import Information from "../pages/selection/Information";
 import Solution from "../pages/selection/Solution";
 import ShowEvent from "../pages/event/ShowEvent";
 import EventHistories from "../pages/event/EventHistories";
+import ShowArticle from "../pages/article/ShowArticle";
 import ShowCaseStudy from "../pages/case_study/ShowCaseStudy";
 import CaseStudyHistories from "../pages/case_study/CaseStudyHistories";
 import ShowCompany from "../pages/company/ShowCompany";
-import ShowMenter from "../pages/menter/ShowMenter";
+import ShowMentor from "../pages/mentor/ShowMentor";
 import EntrySheetCorrection from "../pages/entry_sheet/EntrySheetCorrection";
 import CaseStudyCorrection from "../pages/case_study/CaseStudyCorrection";
 import Purchase from "../pages/tickets/Purchase";
@@ -25,9 +26,9 @@ import AdminLogin from "../pages/auth/AdminLogin";
 import Mentees from "../pages/mentee/Mentees";
 import EditMentee from "../pages/mentee/EditMentee";
 import RegisterMentee from "../pages/mentee/RegisterMentee";
-import Menters from "../pages/menter/Menters";
-import EditMenter from "../pages/menter/EditMenter";
-import RegisterMenter from "../pages/menter/RegisterMenter";
+import Menters from "../pages/mentor/Menters";
+import EditMenter from "../pages/mentor/EditMenter";
+import RegisterMenter from "../pages/mentor/RegisterMenter";
 import Events from "../pages/event/Events";
 import EntrySheets from "../pages/entry_sheet/EntrySheets";
 import CaseStudies from "../pages/case_study/CaseStudies";
@@ -118,6 +119,14 @@ export const Routing = () => {
           }
         />
         <Route
+          path={Paths.showArticle}
+          element={
+            <PrivateRoute path={Paths.showArticle}>
+              <ShowArticle />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path={Paths.showCaseStudy}
           element={
             <PrivateRoute path={Paths.showCaseStudy}>
@@ -134,10 +143,10 @@ export const Routing = () => {
           }
         />
         <Route
-          path={Paths.showMenter}
+          path={Paths.showMentor}
           element={
-            <PrivateRoute path={Paths.showMenter}>
-              <ShowMenter />
+            <PrivateRoute path={Paths.showMentor}>
+              <ShowMentor />
             </PrivateRoute>
           }
         />

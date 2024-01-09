@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import '../../assets/scss/auth/login.scss';
 import Logo from './../../assets/images/logo.png';
 import Input from "../../components/form/Input";
 import { login } from "../../utils/actions";
+import Auth from '../../utils/auth';
 
-const Login = (props) => {
+const Login = () => {
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     email: '',
     password: ''
   });
-
+  const [error, setError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
@@ -18,16 +21,11 @@ const Login = (props) => {
     setData({ ...data, [name]: value })
   };
 
-  const loginHandler = () => {
-
-    // set initial error values to empty
+  const loginHandler = async () => {
+    setError('');
     setEmailError('');
     setPasswordError('');
 
-    console.log("email, password");
-    console.log(data.email, data.password);
-
-    // validation check if the user has entered both fields correctly
     if ('' === data.email) {
       setEmailError('メールは必須です。');
       return;
@@ -48,21 +46,31 @@ const Login = (props) => {
       return;
     }
 
-    // Authentication calls will be made here.
-    console.log('validation success');
-
-    // Log in a user using email and password
-    login(data);
-
+    await login(data).then( (res)=>{
+      if (res.status == 200){
+        console.log('success')
+        navigate('/dashboard');
+      }
+      else {
+        setError(res)
+      }
+    });
   };
 
-  return (
+  useEffect(()=>{
+		if(Auth.user_token){
+			navigate('/');
+		}
+	}, [navigate, Auth])  
+  
+  return (!Auth.user_token?
     <section className="">
       <div className="grid h-screen max-w-lg grid-cols-1 mx-auto">
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 my-auto">
           <div className="mb-5">
             <img src={Logo} className="logo mx-auto" alt="logo" />
             <h1 className="font-bold text-primary text-3xl text-center">Tachyon</h1>
+            <div className="text-sm text-red-700 text-center mt-2">{error}</div>
           </div>
           <form className="">
             <div className="mb-3">
@@ -100,7 +108,7 @@ const Login = (props) => {
           </form>
         </div>
       </div>
-    </section>
+    </section>:null
   )
 };
 

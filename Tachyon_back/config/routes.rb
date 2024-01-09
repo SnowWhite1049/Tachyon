@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post 'users/register', to: 'user#register'
     post 'users/refresh_token', to: 'user#refresh_token'
     get 'users', to: 'user#index'
+    get 'users/mentor/:mentor_id', to: 'user#apply_mentor'
     get 'users/:id', to: 'user#show'
     put 'users/:id', to: 'user#update'
     delete 'users/:id', to: 'user#destroy'
@@ -75,6 +76,13 @@ Rails.application.routes.draw do
     put 'events/:id', to: 'event#update'
     delete 'events/:id', to: 'event#destroy'
 
+    get 'event_reservations', to: 'event_reservation#index'
+    get 'event_reservations/user', to: 'event_reservation#user_reservations'
+    get 'event_reservations/:id', to: 'event_reservation#show'
+    post 'event_reservations', to: 'event_reservation#create'
+    put 'event_reservations/:id', to: 'event_reservation#update'
+    delete 'event_reservations/:id', to: 'event_reservation#destroy'
+
     get 'entry_sheets', to: 'entry_sheet#index'
     get 'entry_sheets/:id', to: 'entry_sheet#show'
     post 'entry_sheets', to: 'entry_sheet#create'
@@ -128,6 +136,13 @@ Rails.application.routes.draw do
     post 'interview_experiences', to: 'interview_experience#create'
     put 'interview_experiences/:id', to: 'interview_experience#update'
     delete 'interview_experiences/:id', to: 'interview_experience#destroy'
+
+    get 'articles', to: 'article#index'
+    get 'articles/last', to: 'article#last_article'
+    get 'articles/:id', to: 'article#show'
+    post 'articles', to: 'article#create'
+    put 'articles/:id', to: 'article#update'
+    delete 'articles/:id', to: 'article#destroy'
   end
   root to: 'test#welcome'
 end
